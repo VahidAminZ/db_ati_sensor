@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>db_ati_sensor</name>
+  <version>0.0.0</version>
+  <description>The db_ati_sensor package</description>
+
+  <maintainer email="vahid@todo.todo">vahid</maintainer>
+
+
+  <license>TODO</license>
+  
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>comedi</build_depend>
+  <run_depend>cmake_modules</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>comedi</run_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>
