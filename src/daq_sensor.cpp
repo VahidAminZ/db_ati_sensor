@@ -68,13 +68,13 @@ int DAQ_Sensor::get_converter(comedi_t *device, unsigned subdevice, unsigned cha
         return -1;
     }
     // TODO(Vahid): Check if this is correct or not (software calibration)
-    flags=0; //CHANGE ME!!!!! TO BYPASS SOFTWARE CALIBRATION
+//    flags=0; //CHANGE ME!!!!! TO BYPASS SOFTWARE CALIBRATION
 
 
     if(flags & SDF_SOFT_CALIBRATED) // board uses software calibration
     {
         char *calibration_file_path = comedi_get_default_calibration_path(device);
-
+        std::cout << "calibration file path is " << calibration_file_path << std::endl;
 
         //parse a calibration file which was produced by the comedi_soft_calibrate program
         comedi_calibration_t* parsed_calibration =
@@ -140,6 +140,7 @@ int DAQ_Sensor::init_comedi(){
             return -1;
         }
         voltages[chan] = comedi_to_physical(data, &converter);
+        std::cout << "voltages for chanel " << chan << " is " << voltages[chan] << std::endl;
     }
 
 #ifdef ROS
@@ -150,7 +151,7 @@ int DAQ_Sensor::init_comedi(){
 
 //    strcpy(calfilepath,path.c_str());
 //    strcat(calfilepath,calfile.c_str());
-    std::string a="/home/vahid/projects/de_beers/src/db_ati_sensor/calibration/FT10787.cal";
+    std::string a="/home/vahid/projects/de_beers/src/db_ati_sensor/calibration/FT19470.cal";
     strcpy(calfilepath,a.c_str());
     printf("File %s\n",calfilepath);
 
@@ -160,6 +161,7 @@ int DAQ_Sensor::init_comedi(){
 printf("bbb\n");
     Bias(cal,voltages);
 printf("aaa\n");
+  return 0;
 }
 
 
@@ -173,7 +175,7 @@ int DAQ_Sensor::run(float forces[12]){
             comedi_perror("comedi_data_read");
             return -1;
         }
-
+        std::cout << data << std::endl;
   //      retval = get_converter(it, subdev, chan, range, &converter);
         //if(retval < 0)	return -1;
 
