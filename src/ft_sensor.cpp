@@ -55,10 +55,10 @@ FTSensor::FTSensor():cmd_(&c), raw_values_(N_CHANS_), voltages_(N_CHANS_), resul
   options_.n_chan = 16;
   options_.n_scan = 1000;
   options_.freq = 10000.0;
-  dev_ = comedi_open(options_.filename);
+  dev_ = comedi_open(options_.filename.c_str());
   if(!dev_)
   {
-    comedi_perror(options_.filename);
+    comedi_perror(options_.filename.c_str());
     exit(1);
   }
   // Print numbers for clipped inputs
