@@ -4,7 +4,7 @@ project(db_ati_sensor)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS geometry_msgs)
+find_package(catkin REQUIRED COMPONENTS geometry_msgs roscpp std_msgs)
 find_package(cmake_modules REQUIRED)	
 # find_package(Comedi REQUIRED)
 
@@ -100,7 +100,7 @@ find_package(cmake_modules REQUIRED)
 catkin_package(
  INCLUDE_DIRS include
 #  LIBRARIES db_ati_sensor
- CATKIN_DEPENDS geometry_msgs
+ CATKIN_DEPENDS geometry_msgs roscpp std_msgs
 #  DEPENDS libcomedi-dev
 )
 
@@ -114,8 +114,6 @@ include_directories(include)
 
 ## Declare a C++ library
 add_library(db_ati_sensor
-  #src/daq_sensor.cpp
-  src/daq_sensor_2.cpp
   src/ft_sensor.cpp
 )
 
@@ -125,7 +123,7 @@ add_library(db_ati_sensor
 # add_dependencies(db_ati_sensor ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(db_ati_sensor_node src/daq_sensor_2.cpp src/ftrt.c src/ftconfig.c src/node.c src/dom.c src/xmlparse.c src/stack.c src/xmltok.c src/expatls.c src/xmlrole.c)
+add_executable(db_ati_sensor_node src/ft_sensor.cpp src/ftrt.c src/ftconfig.c src/node.c src/dom.c src/xmlparse.c src/stack.c src/xmltok.c src/expatls.c src/xmlrole.c)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
