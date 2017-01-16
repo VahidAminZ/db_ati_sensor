@@ -15,12 +15,12 @@
 #include "db_ati_sensor/ftconfig.h"
 #include "ros/ros.h"
 #include "std_msgs/Float64MultiArray.h"
-#include "boost/scoped_ptr.hpp"
+
 
 class FTSensor {
   struct parsed_options
   {
-    char *filename;
+    std::string filename;
     double value;
     int subdevice;
     int channel;
@@ -41,7 +41,7 @@ public:
 
 private:
 bool first_run_;
-comedi_t *dev_;
+comedi_t* dev_;
 comedi_cmd c,*cmd_;
 parsed_options options_;
 comedi_calibration_t *soft_calibration_;
