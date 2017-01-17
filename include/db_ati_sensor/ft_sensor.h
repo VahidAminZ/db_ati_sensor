@@ -20,7 +20,7 @@
 class FTSensor {
   struct parsed_options
   {
-    std::string filename;
+    char* filename;
     double value;
     int subdevice;
     int channel;
